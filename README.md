@@ -4,7 +4,7 @@ A tutorial project to learn about installing, compiling, and customizing with US
 
 ## Requirements
 
-- Node v18
+- Node v20
 - Git
 - Access to a terminal application
 - A text editor
@@ -37,3 +37,43 @@ A tutorial project to learn about installing, compiling, and customizing with US
     ```
 
 1. Once the server is running, head to [http://localhost:8080/](http://localhost:8080/) and follow the directions on the page!
+
+## Development checks
+
+Run the build and browser checks before saving a checkpoint or opening a pull request:
+
+```bash
+npm run verify
+```
+
+This compiles USWDS Sass, builds the Eleventy site, and runs the Playwright checks for the extending tutorial's desktop and narrow-screen layouts, keyboard scrolling, horizontal overflow, and automated accessibility.
+The compile task also checks that Sass produced a fresh CSS file, so a Sass error cannot pass as a successful build.
+
+Install Playwright's Chromium browser once per machine:
+
+```bash
+npm run test:e2e:install
+```
+
+On Linux, if Chromium reports missing system libraries, install its operating-system dependencies with:
+
+```bash
+npx playwright install --with-deps chromium
+```
+
+The browser checks complement, but do not replace, manual accessibility review. For the `/extend.html` page, also:
+
+- Navigate using only the keyboard; confirm focus stays visible and the live preview scrolls when focused.
+- Check at 400% browser zoom and a 320 CSS-pixel viewport; confirm there is no loss of content or functionality.
+- Test with a screen reader and browser combination, such as VoiceOver with Safari or NVDA with Firefox.
+
+### Read-only USWDS references
+
+When sibling checkouts are available, use `../uswds` for USWDS source and `../uswds-site` for Design System documentation source as read-only references. Do not make tutorial changes in those repositories. To record exactly which reference versions informed a review, run:
+
+```bash
+git -C ../uswds rev-parse HEAD
+git -C ../uswds-site rev-parse HEAD
+```
+
+Include those commit IDs in the review notes or pull request when relevant. The checkouts do not update automatically; fetch updates deliberately and continue to leave the reference worktrees unchanged.

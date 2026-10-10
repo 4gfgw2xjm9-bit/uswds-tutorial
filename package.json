@@ -9,7 +9,8 @@
     "test": "snyk test",
     "build": "npx gulp compile && npx @11ty/eleventy",
     "test:e2e:install": "playwright install chromium",
-    "test:e2e": "npm run build && playwright test"
+    "test:e2e": "playwright test",
+    "verify": "npm run build && npm run test:e2e"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
