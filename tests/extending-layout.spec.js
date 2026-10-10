@@ -2,6 +2,18 @@ const { test, expect } = require("@playwright/test");
 const AxeBuilder = require("@axe-core/playwright").default;
 
 test.describe("Extending tutorial responsive layout", () => {
+  test("opens the extending tutorial at the site root and keeps the original tutorial available", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    await expect(page).toHaveURL(/\/extend\.html$/);
+
+    await page.goto("/index.html");
+    await expect(
+      page.getByRole("heading", { name: "Learn how to use USWDS" }),
+    ).toBeVisible();
+  });
+
   test("keeps a sticky, keyboard-scrollable preview on desktop", async ({
     page,
   }) => {

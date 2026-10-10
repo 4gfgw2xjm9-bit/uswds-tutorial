@@ -36,7 +36,7 @@ A tutorial project to learn about installing, compiling, and customizing with US
     npm start
     ```
 
-1. Once the server is running, head to [http://localhost:8080/](http://localhost:8080/) and follow the directions on the page!
+1. Once the server is running, open [http://localhost:8080/](http://localhost:8080/). The development server redirects the site root to the extending tutorial; the original tutorial is still available at [http://localhost:8080/index.html](http://localhost:8080/index.html).
 
 ## Development checks
 
