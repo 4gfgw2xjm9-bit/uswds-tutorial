@@ -1,0 +1,30 @@
+/*
+----------------------------------------
+USWDS with settings overrides
+----------------------------------------
+Uncomment the following lines and add a list of changed settings
+in the form $setting: value,
+----------------------------------------
+*/
+
+//
+@use "uswds-core" with (
+  $theme-show-notifications: false,
+  $theme-font-type-sans: "public-sans",
+  $theme-font-weight-heavy: 900,
+  $theme-banner-background-color: "ink",
+  $theme-banner-link-color: "indigo-30",
+  $theme-banner-max-width: none,
+  $theme-identifier-max-width: none,
+  $theme-border-radius-lg: 2,
+  $theme-card-border-radius: "lg",
+  $theme-card-border-width: 0,
+  $theme-card-header-typeset: ("sans", "xl", 2),
+  $theme-card-padding-perimeter: 4,
+
+  $theme-color-primary-lighter: "indigo-20v",
+  $theme-color-primary-light: "indigo-40v",
+  $theme-color-primary: "indigo-60v",
+  $theme-color-primary-dark: "indigo-70v",
+  $theme-color-primary-darker: "indigo-80v",
+);

@@ -5,7 +5,7 @@
   <p class="step-description">Go the terminal window where the <strong>watch</strong> script is running and enter <strong>control-c</strong> to stop the script.</p>
   <h3 class="step">Activate theme settings.</h3>
   <p class="step-description">We're going to add some custom <a href="https://designsystem.digital.gov/documentation/settings/">USWDS settings</a> to our project. To do this, we're going to add them to our custom settings file: <strong>_theme/_uswds-theme.scss</strong>.</p>
-  <p class="step-description">In <strong>_theme/_uswds-theme.scss</strong>, uncomment lines 11-14</p>
+  <p class="step-description">In <strong>_theme/_uswds-theme.scss</strong>, uncomment the <strong>@use</strong> and <strong>with</strong> lines. Replace the placeholder settings with a real USWDS setting; each setting can only be configured once.</p>
   <div class="editor">
     <h4 class="filename"><span class="material-icons" aria-hidden="true">description</span> _theme/_uswds-theme.scss</h4>
     <pre class="remove">//  @use "uswds-core" with (
@@ -13,8 +13,7 @@
 //    $setting: value
 //  );</pre><pre class="add">
 @use "uswds-core" with (
-  $setting: value,
-  $setting: value
+  $theme-show-notifications: true,
 );</pre>
   </div>
   <h3 class="step">Turn off compile notifications.</h3>
@@ -22,10 +21,8 @@
   <div class="editor">
     <h4 class="filename"><span class="material-icons" aria-hidden="true">description</span> _theme/_uswds-theme.scss</h4>
     <pre class="blur">@use "uswds-core" with (</pre><pre class="remove">
-  $setting: value,
-  $setting: value</pre><pre class="add">
-  $theme-show-notifications: false,
-</pre><pre class="blur">
+  $theme-show-notifications: true,</pre><pre class="add">
+  $theme-show-notifications: false,</pre><pre class="blur">
 );</pre>
   </div>
   <p class="step-description">Save the file. Now, when the watch script runs you won't see all the messages.</p>
@@ -90,7 +87,11 @@
       </div>
   <p class="step-description">Save the settings file, wait for compile, and hard reload if needed.</p>
   <h3 class="step">Remove unnecessary styles.</h3>
-  <p class="step-description">Now we've added the Banner and Identifier, but if we look at the size of our compiled CSS, it's quite large — over 400 KB! We can greatly reduce the size by using <a href="https://designsystem.digital.gov/components/packages/">USWDS packages</a>.</p>
+  <p class="step-description">Now we've added the Banner and Identifier, but if we look at the size of our compiled CSS, it's quite large — over 400 KB! The compiler doesn't print the file size in its output, so check the compiled CSS file in a terminal with this command:</p>
+  <div class="terminal">
+    <pre>ls -lh assets/uswds/css/styles.css</pre>
+  </div>
+  <p class="step-description">If the watch script is running in another terminal, you can run this command in a second terminal. We can greatly reduce the size by using <a href="https://designsystem.digital.gov/components/packages/">USWDS packages</a>.</p>
   <p class="step-description">Let's open up the USWDS Sass entry point (<strong>_theme/styles.scss</strong>), remove the main <strong>uswds</strong> package, and add both the <strong>usa-banner</strong> and the <strong>usa-identifier</strong> packages.</p>
   <div class="editor">
     <h4 class="filename"><span class="material-icons" aria-hidden="true">description</span> _theme/styles.scss</h4>

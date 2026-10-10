@@ -105,7 +105,7 @@
 
 :where(body) {
   min-block-size: 100%;
-  scrollbar-gutter: stable both-edges;
+  scrollbar-gutter: stable;
 }
 
 :is(h1, h2, h3, h4, h5, h6) {
@@ -453,7 +453,7 @@ main  .part.intro {
 
 .part.intro > h2 {
   color: var(--yellow-7);
-  font-size: var(--font-size-8);
+  font-size: clamp(var(--font-size-6), 8vw, var(--font-size-8));
   font-weight: normal;
 }
 
@@ -559,6 +559,7 @@ main p {
   margin-top: var(--size-3);
   font-size: var(--font-size-3);
   max-width: 80ex;
+  overflow-wrap: anywhere;
 }
 
 main p a[href],
@@ -606,6 +607,12 @@ main p a:active {
   padding-bottom: var(--size-5);
 }
 
+.editor[tabindex="0"],
+.terminal[tabindex="0"],
+.extend-preview {
+  cursor: auto;
+}
+
 .terminal pre,
 .editor pre {
   padding: 0 var(--size-5);
@@ -618,7 +625,7 @@ main p a:active {
 }
 
 pre.blur {
-  opacity: 0.5;
+  opacity: 1;
 }
 
 pre.feature {
@@ -635,7 +642,7 @@ pre.feature {
 }
 
 .editor > .remove {
-  color: var(--red-8);
+  color: var(--gray-9);
 }
 
 .editor > .add:before,
@@ -690,7 +697,8 @@ footer {
 }
 
 footer a {
-  color: var(--blue-2)
+  color: var(--blue-2);
+  text-decoration: underline;
 }
 
 footer a:hover {
@@ -753,4 +761,72 @@ a.contents-item:hover {
 
 .contents-item .material-icons {
   margin-left: var(--size-1);
+}
+
+.extend-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 32vw);
+  grid-template-areas:
+    "intro intro"
+    "lessons preview";
+  align-items: start;
+  gap: var(--size-5);
+}
+
+.extend-layout > .part.intro {
+  grid-area: intro;
+}
+
+.extend-lessons {
+  grid-area: lessons;
+  min-width: 0;
+}
+
+.extend-preview {
+  grid-area: preview;
+  position: sticky;
+  top: var(--size-4);
+  min-width: 0;
+  max-height: calc(100vh - 2 * var(--size-4));
+  max-height: calc(100dvh - 2 * var(--size-4));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+
+.extend-preview__content,
+.extend-preview .usa-card,
+.extend-preview .my-testimonial {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.extend-preview .usa-card {
+  width: 100%;
+}
+
+@media (max-width: 63.99rem) {
+  body {
+    scrollbar-gutter: auto;
+  }
+
+  .extend-layout .part {
+    padding-right: var(--size-5);
+    padding-left: var(--size-5);
+  }
+
+  .extend-layout {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "intro"
+      "preview"
+      "lessons";
+  }
+
+  .extend-preview {
+    position: static;
+    max-height: none;
+    overflow: visible;
+    overscroll-behavior: auto;
+  }
 }

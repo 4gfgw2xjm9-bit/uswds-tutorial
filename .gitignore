@@ -4,3 +4,5 @@ assets/uswds
 node_modules
 .gz
 .DS_Store
+test-results/
+playwright-report/
